@@ -5,7 +5,14 @@ class Program
 {
     private static void Main(string[] args)
     {
+        /// <summary>
+        /// Путь к файлу с текстом для анализа.
+        /// </summary>
         var textPath = Path.Combine(DirectoryExtension.GetSolutionRoot(), "Text1.txt");
+
+        /// <summary>
+        /// Содержимое текстового файла.
+        /// </summary>
         var text = string.Empty;
         try
         {
@@ -55,6 +62,11 @@ class Program
         }
     }
 
+    /// <summary>
+    /// Очищает слово от не-буквенных символов и приводит его к нижнему регистру.
+    /// </summary>
+    /// <param name="word"> Слово для очистки.</param>
+    /// <returns>Очищенное слово в нижнем регистре или пустую строку, если слово не содержит букв.</returns>
     static string CleanWord(string word)
     {
         int start = 0, end = word.Length - 1;
@@ -63,10 +75,23 @@ class Program
         return start <= end ? word[start..(end + 1)].ToLower() : string.Empty;
     }
 
+    /// <summary>
+    /// Читает список исключаемых слов из файла.
+    /// </summary>
+    /// <returns>HashSet, содержащий исключаемые слова.</returns>
     static HashSet<string> ReadExcludedWords()
     {
+        /// <summary>
+        /// Путь к файлу с исключаемыми словами.
+        /// </summary>
         var excludedWordsPath = Path.Combine(DirectoryExtension.GetSolutionRoot(), "ExcludedWords.txt");
+        /// <summary>
+        /// Множество для хранения исключаемых слов.
+        /// </summary>
         var excludedWords = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        /// <summary>
+        /// Массив строк из файла с исключаемыми словами.
+        /// </summary>
         var lines = Array.Empty<string>();
         try
         {
